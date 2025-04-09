@@ -1,6 +1,17 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, ScrollView, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  ScrollView,
+  TouchableOpacity,
+  StyleSheet,
+  Image,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { useNavigation } from '@react-navigation/native'; 
+
+
 
 const categorias = ['Perros', 'Bebidas', 'Combos', 'Promociones'];
 
@@ -10,7 +21,7 @@ const productosEjemplo = [
     nombre: 'Perro Americano',
     descripcion: 'Salchicha americana y salsas.',
     precio: 12000,
-    imagen: '../assets/americano.jpeg', // Cambia por tu URL o require('...')
+    imagen: '../assets/americano.jpeg', 
   },
   {
     id: 2,
@@ -23,6 +34,7 @@ const productosEjemplo = [
 
 export default function MainMenu() {
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('Perros');
+  const navigation = useNavigation(); 
 
   return (
     <View style={styles.container}>
@@ -65,10 +77,18 @@ export default function MainMenu() {
 
       {/* Footer */}
       <View style={styles.footer}>
-        <Icon name="home" size={24} />
-        <Icon name="heart" size={24} />
-        <Icon name="clock-o" size={24} />
-        <Icon name="user" size={24} />
+        <TouchableOpacity onPress={() => navigation.navigate('MainMenu')}>
+        <Icon name="home" size={30} color="#ff5e57" />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('FavoritesScreen')}>
+          <Icon name="heart" size={30} color="#ff5e57" />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('HistoryScreen')}>
+          <Icon name="clock-o" size={30} color="#ff5e57" />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('ProfileScreen')}>
+          <Icon name="user" size={30} color="#ff5e57" />
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -156,8 +176,8 @@ const styles = StyleSheet.create({
   footer: {
     position: 'absolute',
     bottom: 0,
-    height: 60,
-    width: '100%',
+    height: 70,
+    width: '110%',
     backgroundColor: 'white',
     borderTopWidth: 1,
     borderTopColor: '#ddd',

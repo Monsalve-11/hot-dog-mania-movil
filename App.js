@@ -6,20 +6,16 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import MainMenu from './screens/MainMenu';
-
+import FavoritesScreen from './screens/FavoritesScreen';
+import HistoryScreen from './screens/HistoryScreen';
+import ProfileScreen from './screens/ProfileScreen';
 
 const Stack = createNativeStackNavigator();
 
 function HomeScreen({ navigation }) {
   return (
-    <LinearGradient
-      colors={['#1a1a1a', '#2d2d2d']}
-      style={styles.container}
-    >
-      <Image
-        source={require('./assets/fondo.png')}
-        style={styles.backgroundImage}
-      />
+    <LinearGradient colors={['#1a1a1a', '#2d2d2d']} style={styles.container}>
+      <Image source={require('./assets/fondo.png')} style={styles.backgroundImage} />
       <View style={styles.contentContainer}>
         <View style={styles.titleContainer}>
           <Text style={styles.star}>★</Text>
@@ -27,15 +23,10 @@ function HomeScreen({ navigation }) {
           <Text style={styles.star}>★</Text>
         </View>
         <Text style={styles.subtitle}>MANIA</Text>
-        
         <View style={styles.buttonContainer}>
-          <TouchableOpacity 
-            style={styles.loginButton}
-            onPress={() => navigation.navigate('MainMenu')}
-          >
+          <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate('MainMenu')}>
             <Text style={styles.loginButtonText}>Iniciar Sesión</Text>
           </TouchableOpacity>
-          
           <View style={styles.registerContainer}>
             <Text style={styles.registerText}>¿No tienes una cuenta? </Text>
             <TouchableOpacity onPress={() => navigation.navigate('Register')}>
@@ -52,15 +43,14 @@ function HomeScreen({ navigation }) {
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator 
-        screenOptions={{
-          headerShown: false
-        }}
-      >
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
         <Stack.Screen name="MainMenu" component={MainMenu} />
+        <Stack.Screen name="FavoritesScreen" component={FavoritesScreen} />
+        <Stack.Screen name="HistoryScreen" component={HistoryScreen} />
+        <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
