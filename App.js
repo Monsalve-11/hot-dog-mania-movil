@@ -5,6 +5,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
+import MainMenu from './screens/MainMenu';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -29,7 +31,7 @@ function HomeScreen({ navigation }) {
         <View style={styles.buttonContainer}>
           <TouchableOpacity 
             style={styles.loginButton}
-            onPress={() => navigation.navigate('Login')}
+            onPress={() => navigation.navigate('MainMenu')}
           >
             <Text style={styles.loginButtonText}>Iniciar Sesión</Text>
           </TouchableOpacity>
@@ -58,6 +60,7 @@ export default function App() {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
+        <Stack.Screen name="MainMenu" component={MainMenu} />
       </Stack.Navigator>
     </NavigationContainer>
   );
