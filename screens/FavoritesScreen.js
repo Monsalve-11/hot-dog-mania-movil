@@ -1,21 +1,39 @@
-import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import { Ionicons, FontAwesome } from '@expo/vector-icons';
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  TextInput,
+  ScrollView,
+  TouchableOpacity,
+  StyleSheet,
+  Image,
+} from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome";
+import { useNavigation } from "@react-navigation/native";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 const FavoritesScreen = () => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      
       {/* Header */}
       <View style={styles.header}>
-        <Ionicons name="menu" size={28} color="black" />
+        <Ionicons name="menu" size={32} color="black" />
+
         <View style={styles.logo}>
-          <Text style={styles.star}>★</Text>
-          <Text style={styles.logoText}>HOT DOG</Text>
-          <Text style={styles.logoText}>MANIA</Text>
-          <Text style={styles.star}>★</Text>
+          <View style={styles.logoRow}>
+            <Text style={styles.star}>★</Text>
+
+            <View style={styles.logoTextContainer}>
+              <Text style={styles.logoText}>HOT DOG</Text>
+              <Text style={styles.logoText}>MANIA</Text>
+            </View>
+
+            <Text style={styles.star}>★</Text>
+          </View>
         </View>
-        <FontAwesome name="shopping-cart" size={24} color="black" />
+
+        <Icon name="shopping-cart" size={30} color="black" />
       </View>
 
       {/* Título */}
@@ -25,7 +43,7 @@ const FavoritesScreen = () => {
       {/* Card */}
       <View style={styles.card}>
         <Image
-          source={{ uri: 'https://i.imgur.com/5Aqgz7o.png' }}
+          source={{ uri: "https://i.imgur.com/5Aqgz7o.png" }}
           style={styles.image}
         />
         <View style={styles.info}>
@@ -37,12 +55,22 @@ const FavoritesScreen = () => {
         </TouchableOpacity>
       </View>
 
-      {/* Bottom Navigation */}
-      <View style={styles.navBar}>
-        <Ionicons name="home" size={26} color="#000" />
-        <Ionicons name="heart" size={26} color="red" />
-        <Ionicons name="time" size={26} color="#000" />
-        <Ionicons name="person" size={26} color="#000" />
+      {/* Footer */}
+      <View style={styles.footer}>
+        <TouchableOpacity onPress={() => navigation.navigate("MainMenu")}>
+          <Icon name="home" size={30} color="#ff5e57" />
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("FavoritesScreen")}
+        >
+          <Icon name="heart" size={30} color="#ff5e57" />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("HistoryScreen")}>
+          <Icon name="clock-o" size={30} color="#ff5e57" />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("ProfileScreen")}>
+          <Icon name="user" size={30} color="#ff5e57" />
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -53,47 +81,65 @@ export default FavoritesScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ddd',
+    backgroundColor: "#ddd",
     paddingTop: 40,
     paddingHorizontal: 15,
   },
   header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingHorizontal: 16,
+    paddingTop: 20, // Esto evita que quede tan pegado arriba
+    paddingBottom: 10,
+    alignItems: "center",
   },
+
   logo: {
-    alignItems: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
+
+  logoRow: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+
+  logoTextContainer: {
+    alignItems: "center",
+    marginHorizontal: 8,
+  },
+
   logoText: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
     fontSize: 14,
-    textAlign: 'center',
+    textAlign: "center",
   },
   star: {
-    fontSize: 18,
+    fontSize: 28,
+    color: "black",
+    marginHorizontal: 4,
   },
   title: {
     fontSize: 22,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginTop: 20,
-    textAlign: 'center',
+    textAlign: "center",
   },
   separator: {
     height: 2,
-    backgroundColor: '#000',
+    backgroundColor: "#000",
     marginVertical: 10,
-    width: '60%',
-    alignSelf: 'center',
+    width: "60%",
+    alignSelf: "center",
   },
   card: {
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     borderRadius: 20,
     padding: 15,
     marginVertical: 20,
-    flexDirection: 'column',
-    alignItems: 'center',
-    shadowColor: '#000',
+    flexDirection: "column",
+    alignItems: "center",
+    shadowColor: "#000",
     shadowOpacity: 0.2,
     shadowOffset: { width: 0, height: 3 },
     shadowRadius: 5,
@@ -105,37 +151,38 @@ const styles = StyleSheet.create({
     borderRadius: 30,
   },
   info: {
-    alignItems: 'center',
+    alignItems: "center",
     marginVertical: 10,
   },
   name: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
     fontSize: 16,
   },
   price: {
-    color: 'red',
+    color: "red",
     fontSize: 14,
   },
   button: {
-    backgroundColor: 'red',
+    backgroundColor: "red",
     borderRadius: 20,
     paddingVertical: 6,
     paddingHorizontal: 20,
     marginTop: 5,
   },
   buttonText: {
-    color: '#fff',
-    fontWeight: 'bold',
+    color: "#fff",
+    fontWeight: "bold",
   },
-  navBar: {
-    position: 'absolute',
-    bottom: 15,
-    left: 20,
-    right: 20,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    backgroundColor: '#eee',
-    paddingVertical: 10,
-    borderRadius: 30,
+  footer: {
+    position: "absolute",
+    bottom: 0,
+    height: 70,
+    width: "110%",
+    backgroundColor: "white",
+    borderTopWidth: 1,
+    borderTopColor: "#ddd",
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
   },
 });
