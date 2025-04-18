@@ -1,11 +1,11 @@
-import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import { Ionicons, FontAwesome } from '@expo/vector-icons';
+import React from "react";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { Ionicons, FontAwesome } from "@expo/vector-icons";
+import BottomNav from "../components/barraInferior";
 
 const FavoritesScreen = () => {
   return (
     <View style={styles.container}>
-      
       {/* Header */}
       <View style={styles.header}>
         <Ionicons name="menu" size={28} color="black" />
@@ -25,7 +25,7 @@ const FavoritesScreen = () => {
       {/* Card */}
       <View style={styles.card}>
         <Image
-          source={{ uri: 'https://i.imgur.com/5Aqgz7o.png' }}
+          source={{ uri: "https://i.imgur.com/5Aqgz7o.png" }}
           style={styles.image}
         />
         <View style={styles.info}>
@@ -44,6 +44,7 @@ const FavoritesScreen = () => {
         <Ionicons name="time" size={26} color="#000" />
         <Ionicons name="person" size={26} color="#000" />
       </View>
+      <BottomNav />
     </View>
   );
 };
@@ -53,47 +54,47 @@ export default FavoritesScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ddd',
+    backgroundColor: "#ddd",
     paddingTop: 40,
     paddingHorizontal: 15,
   },
   header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   logo: {
-    alignItems: 'center',
+    alignItems: "center",
   },
   logoText: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
     fontSize: 14,
-    textAlign: 'center',
+    textAlign: "center",
   },
   star: {
     fontSize: 18,
   },
   title: {
     fontSize: 22,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginTop: 20,
-    textAlign: 'center',
+    textAlign: "center",
   },
   separator: {
     height: 2,
-    backgroundColor: '#000',
+    backgroundColor: "#000",
     marginVertical: 10,
-    width: '60%',
-    alignSelf: 'center',
+    width: "60%",
+    alignSelf: "center",
   },
   card: {
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     borderRadius: 20,
     padding: 15,
     marginVertical: 20,
-    flexDirection: 'column',
-    alignItems: 'center',
-    shadowColor: '#000',
+    flexDirection: "column",
+    alignItems: "center",
+    shadowColor: "#000",
     shadowOpacity: 0.2,
     shadowOffset: { width: 0, height: 3 },
     shadowRadius: 5,
@@ -105,36 +106,36 @@ const styles = StyleSheet.create({
     borderRadius: 30,
   },
   info: {
-    alignItems: 'center',
+    alignItems: "center",
     marginVertical: 10,
   },
   name: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
     fontSize: 16,
   },
   price: {
-    color: 'red',
+    color: "red",
     fontSize: 14,
   },
   button: {
-    backgroundColor: 'red',
+    backgroundColor: "red",
     borderRadius: 20,
     paddingVertical: 6,
     paddingHorizontal: 20,
     marginTop: 5,
   },
   buttonText: {
-    color: '#fff',
-    fontWeight: 'bold',
+    color: "#fff",
+    fontWeight: "bold",
   },
   navBar: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 15,
     left: 20,
     right: 20,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    backgroundColor: '#eee',
+    flexDirection: "row",
+    justifyContent: "space-around",
+    backgroundColor: "#eee",
     paddingVertical: 10,
     borderRadius: 30,
   },

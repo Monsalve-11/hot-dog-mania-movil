@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -7,42 +7,41 @@ import {
   TouchableOpacity,
   StyleSheet,
   Image,
-} from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { useNavigation } from '@react-navigation/native'; 
+} from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome";
+import { useNavigation } from "@react-navigation/native";
+import BottomNav from "../components/barraInferior";
 
-
-
-const categorias = ['Perros', 'Bebidas', 'Combos', 'Promociones'];
+const categorias = ["Perros", "Bebidas", "Combos", "Promociones"];
 
 const productosEjemplo = [
   {
     id: 1,
-    nombre: 'Perro Americano',
-    descripcion: 'Salchicha americana y salsas.',
+    nombre: "Perro Americano",
+    descripcion: "Salchicha americana y salsas.",
     precio: 12000,
-    imagen: '../assets/americano.jpeg', 
+    imagen: "../assets/americano.jpeg",
   },
   {
     id: 2,
-    nombre: 'Perro con maicitos',
-    descripcion: 'Salchicha, maicitos, queso y tocineta.',
+    nombre: "Perro con maicitos",
+    descripcion: "Salchicha, maicitos, queso y tocineta.",
     precio: 15000,
-    imagen: '../assets/americano.jpeg',
+    imagen: "../assets/americano.jpeg",
   },
 ];
 
 export default function MainMenu() {
-  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('Perros');
-  const navigation = useNavigation(); 
+  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("Perros");
+  const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
-        <Icon name="bars" size={24} onPress={() => alert('Menú')} />
-        <Text style={styles.logoText}>HOT DOG {'\n'}MANIA</Text>
-        <Icon name="shopping-cart" size={24} onPress={() => alert('Carrito')} />
+        <Icon name="bars" size={24} onPress={() => alert("Menú")} />
+        <Text style={styles.logoText}>HOT DOG {"\n"}MANIA</Text>
+        <Icon name="shopping-cart" size={24} onPress={() => alert("Carrito")} />
       </View>
 
       {/* Buscar */}
@@ -50,10 +49,22 @@ export default function MainMenu() {
       <TextInput placeholder="Buscar..." style={styles.input} />
 
       {/* Tabs */}
-      <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.tabScroll}>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        style={styles.tabScroll}
+      >
         {categorias.map((cat) => (
-          <TouchableOpacity key={cat} onPress={() => setCategoriaSeleccionada(cat)}>
-            <Text style={[styles.tab, categoriaSeleccionada === cat && styles.tabSelected]}>
+          <TouchableOpacity
+            key={cat}
+            onPress={() => setCategoriaSeleccionada(cat)}
+          >
+            <Text
+              style={[
+                styles.tab,
+                categoriaSeleccionada === cat && styles.tabSelected,
+              ]}
+            >
               {cat}
             </Text>
           </TouchableOpacity>
@@ -61,13 +72,19 @@ export default function MainMenu() {
       </ScrollView>
 
       {/* Productos */}
-      <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.cardScroll}>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        style={styles.cardScroll}
+      >
         {productosEjemplo.map((prod) => (
           <View key={prod.id} style={styles.card}>
             <Image source={{ uri: prod.imagen }} style={styles.image} />
             <Text style={styles.productName}>{prod.nombre}</Text>
             <Text style={styles.productDesc}>{prod.descripcion}</Text>
-            <Text style={styles.productPrice}>${prod.precio.toLocaleString()}</Text>
+            <Text style={styles.productPrice}>
+              ${prod.precio.toLocaleString()}
+            </Text>
             <TouchableOpacity style={styles.buyButton}>
               <Text style={styles.buyButtonText}>Comprar</Text>
             </TouchableOpacity>
@@ -77,18 +94,7 @@ export default function MainMenu() {
 
       {/* Footer */}
       <View style={styles.footer}>
-        <TouchableOpacity onPress={() => navigation.navigate('MainMenu')}>
-        <Icon name="home" size={30} color="#ff5e57" />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('FavoritesScreen')}>
-          <Icon name="heart" size={30} color="#ff5e57" />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('HistoryScreen')}>
-          <Icon name="clock-o" size={30} color="#ff5e57" />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('ProfileScreen')}>
-          <Icon name="user" size={30} color="#ff5e57" />
-        </TouchableOpacity>
+        <BottomNav />
       </View>
     </View>
   );
@@ -98,24 +104,24 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor: '#f3f4f6',
+    backgroundColor: "#f3f4f6",
   },
   header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   logoText: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
     fontSize: 18,
-    textAlign: 'center',
+    textAlign: "center",
   },
   question: {
     fontSize: 16,
     marginTop: 20,
   },
   input: {
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     borderRadius: 30,
     paddingHorizontal: 16,
     paddingVertical: 10,
@@ -127,62 +133,62 @@ const styles = StyleSheet.create({
   tab: {
     marginRight: 16,
     fontSize: 14,
-    color: 'gray',
+    color: "gray",
   },
   tabSelected: {
-    color: 'red',
-    textDecorationLine: 'underline',
+    color: "red",
+    textDecorationLine: "underline",
   },
   cardScroll: {
     marginTop: 20,
   },
   card: {
-    backgroundColor: 'white',
+    backgroundColor: "white",
     padding: 10,
     borderRadius: 20,
     marginRight: 16,
     width: 180,
   },
   image: {
-    width: '100%',
+    width: "100%",
     height: 100,
     borderRadius: 12,
   },
   productName: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
     fontSize: 14,
     marginTop: 8,
   },
   productDesc: {
     fontSize: 12,
-    color: 'gray',
+    color: "gray",
   },
   productPrice: {
     fontSize: 14,
-    color: 'red',
-    fontWeight: 'bold',
+    color: "red",
+    fontWeight: "bold",
     marginTop: 4,
   },
   buyButton: {
-    backgroundColor: 'red',
+    backgroundColor: "red",
     paddingVertical: 6,
     borderRadius: 30,
     marginTop: 8,
   },
   buyButtonText: {
-    color: 'white',
-    textAlign: 'center',
+    color: "white",
+    textAlign: "center",
   },
   footer: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 0,
     height: 70,
-    width: '110%',
-    backgroundColor: 'white',
+    width: "110%",
+    backgroundColor: "white",
     borderTopWidth: 1,
-    borderTopColor: '#ddd',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
+    borderTopColor: "#ddd",
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
   },
 });
